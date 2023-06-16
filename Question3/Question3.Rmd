@@ -110,18 +110,33 @@ if(!require("tidyverse")) install.packages("tidyverse")
 library(tidyverse)
 library(viridis)
 library(RColorBrewer)
-
+library(corrplot)
 
 # Notice that as you are working in a .Rproj file (I am assuming you are) - the relative paths of your directories start at your specified root.
 # This means that when working in a .Rproj file, you never need to use getwd() - it is assumed as your base root automatically.
 
 ```
+
+
 ```{r}
 coldplayDF <- read.csv('data/Coldplay_vs_Metallica/Coldplay.csv')
 metallicaDF <- read.csv('data/Coldplay_vs_Metallica/metallica.csv')
+source('code/merged_songs_plot.R')
+source('code/plotPolar.R')
+merged<- mergeBands(coldplayDF, metallicaDF)
+source("code/corrPlots.R")
+
 ```
 
 ```{r}
-g1
+songreleases_plot(merged)
 ```
 
+```{r fig.width=7, fig.height=8}
+plotPolar(merged)
+```
+
+```{r metallica-plot, out.width='50%', echo=FALSE}
+knitr::include_graphics("Metallica_corrplot.png")
+knitr::include_graphics("Coldplay_corrplot.png")
+```
