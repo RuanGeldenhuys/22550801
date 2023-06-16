@@ -121,7 +121,9 @@ library(viridis)
 ```{r}
 DeathCauseDF <- read.csv('data/Covid/Deaths_by_cause.csv')
 CovidDF <- read.csv('data/Covid/owid-covid-data.csv')
-
+source('code/CovidDeathfunctions.R')
+source('code/demographyPlot.R')
+source('code/plotICUvHOSP.R')
 
 ```
 
@@ -138,3 +140,8 @@ The lollipop chart above once again shows the total deaths broken down by contin
 ```{r fig.width=8}
 demographyPlot(CovidDF, 2, 2)
 ```
+
+```{r fig.width=7, fig.height=7}
+plotICUvHOSP(CovidDF)
+```
+
