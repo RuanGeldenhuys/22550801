@@ -108,7 +108,9 @@ knitr::opts_chunk$set(echo = FALSE, message = FALSE, warning = FALSE, fig.width 
 # Lets load in example data, and see how this can be stored and later called from your 'data' folder.
 if(!require("tidyverse")) install.packages("tidyverse")
 library(tidyverse)
-
+library(ggpubr)
+library(hrbrthemes)
+library(viridis)
 # Notice that as you are working in a .Rproj file (I am assuming you are) - the relative paths of your directories start at your specified root.
 # This means that when working in a .Rproj file, you never need to use getwd() - it is assumed as your base root automatically.
 
@@ -123,3 +125,16 @@ CovidDF <- read.csv('data/Covid/owid-covid-data.csv')
 
 ```
 
+```{r warning=FALSE}
+plotCovidArea(CovidDF)
+```
+The graph above breaks down Covid-19 deaths over time by continent. Europe had the most deaths and Oceania the least (as can be seen from the fact that they are barely visible on the graph). Africa had the second lowest amount of deaths.
+
+```{r}
+plotCovidLollipop(CovidDF)
+```
+The lollipop chart above once again shows the total deaths broken down by continent. The size of each point is representative of the continent population size. We see that population size is not indicative of Covid deaths. Africa has a larger population size than South and North America, yet has far fewer Covid deaths.
+
+```{r fig.width=8}
+demographyPlot(CovidDF, 2, 2)
+```
