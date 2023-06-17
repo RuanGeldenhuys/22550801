@@ -169,57 +169,35 @@
 
 \begin{frontmatter}  %
 
-\title{Helping You Write Academic Papers in R using Texevier}
+\title{Metallica vs Coldplay - A study}
 
 % Set to FALSE if wanting to remove title (for submission)
 
 
 
 
-\author[Add1]{Nico Katzke\footnote{\textbf{Contributions:}
-  \newline \emph{The authors would like to thank no institution for
-  money donated to this project. Thank you sincerely.}}}
-\ead{nfkatzke@gmail.com}
-
-\author[Add1,Add2]{John Smith}
-\ead{John@gmail.com}
-
-\author[Add1,Add2]{John Doe}
-\ead{Joe@gmail.com}
+\author[Add1]{Ruan Geldenhuys}
+\ead{22550801@sun.ac.za}
 
 
 
-\address[Add1]{Prescient Securities, Cape Town, South Africa}
-\address[Add2]{Some other Institution, Cape Town, South Africa}
 
-\cortext[cor]{Corresponding author: Nico Katzke\footnote{\textbf{Contributions:}
-  \newline \emph{The authors would like to thank no institution for
-  money donated to this project. Thank you sincerely.}}}
+
+\address[Add1]{Stellenbosch University, Stellenbosch, South Africa}
+
 
 \begin{abstract}
 \small{
-Abstract to be written here. The abstract should not be too long and
-should provide the reader with a good understanding what you are writing
-about. Academic papers are not like novels where you keep the reader in
-suspense. To be effective in getting others to read your paper, be as
-open and concise about your findings here as possible. Ideally, upon
-reading your abstract, the reader should feel he / she must read your
-paper in entirety.
+This document aims to investigate the careers of Metallica and Coldplay.
+By comparing these band I hope to gain insight into key differences in
+history, style and popularity these bands experienced. This analysis
+will be done using data obtained from Spotify.
 }
 \end{abstract}
 
 \vspace{1cm}
 
 
-\begin{keyword}
-\footnotesize{
-Multivariate GARCH \sep Kalman Filter \sep Copula \\
-\vspace{0.3cm}
-}
-\footnotesize{
-\textit{JEL classification} L250 \sep L100
-}
-\end{keyword}
 
 
 
@@ -250,12 +228,57 @@ Multivariate GARCH \sep Kalman Filter \sep Copula \\
 
 
 
+\hypertarget{song-releases}{%
+\section{Song Releases}\label{song-releases}}
+
+The graph below shows song releases by both bands over time. Live
+performances have been excluded from this analysis.
+
 \includegraphics{Question3_files/figure-latex/unnamed-chunk-2-1.pdf}
 
+Metallica has been active for a much longer than Coldplay as is apparent
+from the graph above. One striking difference is that Metallica has
+produced a much greater amount of songs that Coldplay. Even in the
+period where they were both active, Metallica still produced more songs.
+
+\hypertarget{song-characteristics}{%
+\section{Song Characteristics}\label{song-characteristics}}
+
+The graphs below break down the average song characteristics of both
+bands in 5 year periods. The values were scaled using min-max scaling in
+order to be represented on one graph.
 \includegraphics{Question3_files/figure-latex/unnamed-chunk-3-1.pdf}
+
+When analysing the graph above it is important to not compare different
+song characteristics with each other. The only valid comparisons are
+those between bands within the same characteristic. Nevertheless, this
+gives plenty to interpret. These figure show that Metallica songs
+consistently score higher on loudness than Coldplay. Additionally,
+Coldplay songs score higher on energy than Metallica songs.
+Interestingly, from 1998-2003, Metallica songs were higher tempo than
+Coldplay. However in the following years Metallica cut back on high
+tempo songs until 2018, when their songs once again became more high
+tempo than that of Coldplay.
+
+\hypertarget{popularity-and-song-characteristic}{%
+\section{Popularity and Song
+Characteristic}\label{popularity-and-song-characteristic}}
 
 \includegraphics[width=0.5\linewidth]{Metallica_corrplot}
 \includegraphics[width=0.5\linewidth]{Coldplay_corrplot}
+
+By looking at the correlation matrices we can try and infer what makes a
+Metallica song popular vs what makes a Coldplay song popular.
+
+Metallica songs' popularity is negatively correlated with
+instrumentalness, indicating that audience prefer a less instrumental
+Metallica. Popularity is mostly correlated with loudness and energy.
+This means audiences listen to Metallica more when songs are loud and
+have high energy.
+
+Coldplay have no strong correlation with any song characteristic. There
+are some weak positive correlation with danceability and loudness, and
+weak negative correlation with instrumentalness and speechiness.
 
 \bibliography{Tex/ref}
 

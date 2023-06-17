@@ -3,7 +3,7 @@
 # Remove comments and add values where applicable.
 # The descriptions below should be self-explanatory
 
-title: "Helping You Write Academic Papers in R using Texevier"
+title: "Metallica vs Coldplay - A study"
 #subtitle: "This will appear as Right Header"
 
 documentclass: "elsarticle"
@@ -25,23 +25,15 @@ Thesis_FP: FALSE
 # --------- Front Page
 # Comment: ----- Follow this pattern for up to 5 authors
 AddTitle: TRUE # Use FALSE when submitting to peer reviewed platform. This will remove author names.
-Author1: "Nico Katzke^[__Contributions:__  \\newline _The authors would like to thank no institution for money donated to this project. Thank you sincerely._]"  # First Author - note the thanks message displayed as an italic footnote of first page.
-Ref1: "Prescient Securities, Cape Town, South Africa" # First Author's Affiliation
-Email1: "nfkatzke\\@gmail.com" # First Author's Email address
+Author1: "Ruan Geldenhuys"  # First Author - note the thanks message displayed as an italic footnote of first page.
+Ref1: "Stellenbosch University, Stellenbosch, South Africa" # First Author's Affiliation
+Email1: "22550801\\@sun.ac.za" # First Author's Email address
 
-Author2: "John Smith"
-Ref2: "Some other Institution, Cape Town, South Africa"
-Email2: "John\\@gmail.com"
-CommonAffiliation_12: TRUE # If Author 1 and 2 have a common affiliation. Works with _13, _23, etc.
 
-Author3: "John Doe"
-Email3: "Joe\\@gmail.com"
-
-CorrespAuthor_1: TRUE  # If corresponding author is author 3, e.g., use CorrespAuthor_3: TRUE
 
 # Comment out below to remove both. JEL Codes only given if keywords also given.
-keywords: "Multivariate GARCH \\sep Kalman Filter \\sep Copula" # Use \\sep to separate
-JELCodes: "L250 \\sep L100"
+#keywords: "Multivariate GARCH \\sep Kalman Filter \\sep Copula" # Use \\sep to separate
+#JELCodes: "L250 \\sep L100"
 
 # ----- Manage headers and footers:
 #BottomLFooter: $Title$
@@ -92,28 +84,17 @@ output:
     fig_width: 3.5 # Adjust default figure sizes. This can also be done in the chunks of the text.
     fig_height: 3.5
 abstract: |
-  Abstract to be written here. The abstract should not be too long and should provide the reader with a good understanding what you are writing about. Academic papers are not like novels where you keep the reader in suspense. To be effective in getting others to read your paper, be as open and concise about your findings here as possible. Ideally, upon reading your abstract, the reader should feel he / she must read your paper in entirety.
+  This document aims to investigate the careers of Metallica and Coldplay. By comparing these band I hope to gain insight into key differences in history, style and popularity these bands experienced. This analysis will be done using data obtained from Spotify.
 ---
 
-<!-- First: Set your default preferences for chunk options: -->
-
-<!-- If you want a chunk's code to be printed, set echo = TRUE. message = FALSE stops R printing ugly package loading details in your final paper too. I also suggest setting warning = FALSE and checking for warnings in R, else you might find ugly warnings in your paper. -->
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = FALSE, message = FALSE, warning = FALSE, fig.width = 6, fig.height = 5, fig.pos="H", fig.pos = 'H')
-# Note: Include = FALSE implies the code is executed, but not printed in your pdf.
-# warning and message = FALSE implies ugly messages and warnings are removed from your pdf.
-# These should be picked up when you execute the command chunks (code sections below) in your rmd, not printed in your paper!
-
-# Lets load in example data, and see how this can be stored and later called from your 'data' folder.
 if(!require("tidyverse")) install.packages("tidyverse")
 library(tidyverse)
 library(viridis)
 library(RColorBrewer)
 library(corrplot)
-
-# Notice that as you are working in a .Rproj file (I am assuming you are) - the relative paths of your directories start at your specified root.
-# This means that when working in a .Rproj file, you never need to use getwd() - it is assumed as your base root automatically.
 
 ```
 
@@ -128,15 +109,34 @@ source("code/corrPlots.R")
 
 ```
 
+# Song Releases
+
+The graph below shows song releases by both bands over time. Live performances have been excluded from this analysis.
+
 ```{r}
 songreleases_plot(merged)
 ```
 
+Metallica has been active for a much longer than Coldplay as is apparent from the graph above. One striking difference is that Metallica has produced a much greater amount of songs that Coldplay. Even in the period where they were both active, Metallica still produced more songs.
+
+# Song Characteristics
+
+The graphs below break down the average song characteristics of both bands in 5 year periods. The values were scaled using min-max scaling in order to be represented on one graph.
 ```{r fig.width=7, fig.height=8}
 plotPolar(merged)
 ```
+
+When analysing the graph above it is important to not compare different song characteristics with each other. The only valid comparisons are those between bands within the same characteristic. Nevertheless, this gives plenty to interpret. These figure show that Metallica songs consistently score higher on loudness than Coldplay. Additionally, Coldplay songs score higher on energy than Metallica songs. Interestingly, from 1998-2003, Metallica songs were higher tempo than Coldplay. However in the following years Metallica cut back on high tempo songs until 2018, when their songs once again became more high tempo than that of Coldplay.
+
+# Popularity and Song Characteristic
 
 ```{r metallica-plot, out.width='50%', echo=FALSE}
 knitr::include_graphics("Metallica_corrplot.png")
 knitr::include_graphics("Coldplay_corrplot.png")
 ```
+
+By looking at the correlation matrices we can try and infer what makes a Metallica song popular vs what makes a Coldplay song popular.
+
+Metallica songs' popularity is negatively correlated with instrumentalness, indicating that audience prefer a less instrumental Metallica. Popularity is mostly correlated with loudness and energy. This means audiences listen to Metallica more when songs are loud and have high energy.
+
+Coldplay have no strong correlation with any song characteristic. There are some weak positive correlation with danceability and loudness, and weak negative correlation with instrumentalness and speechiness. 

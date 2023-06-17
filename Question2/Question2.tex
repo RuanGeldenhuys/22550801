@@ -169,57 +169,34 @@
 
 \begin{frontmatter}  %
 
-\title{Helping You Write Academic Papers in R using Texevier}
+\title{London Weather - How bad is it really?}
 
 % Set to FALSE if wanting to remove title (for submission)
 
 
 
 
-\author[Add1]{Nico Katzke\footnote{\textbf{Contributions:}
-  \newline \emph{The authors would like to thank no institution for
-  money donated to this project. Thank you sincerely.}}}
-\ead{nfkatzke@gmail.com}
-
-\author[Add1,Add2]{John Smith}
-\ead{John@gmail.com}
-
-\author[Add1,Add2]{John Doe}
-\ead{Joe@gmail.com}
+\author[Add1]{Ruan Geldenhuys}
+\ead{22550801@sun.ac.za}
 
 
 
-\address[Add1]{Prescient Securities, Cape Town, South Africa}
-\address[Add2]{Some other Institution, Cape Town, South Africa}
 
-\cortext[cor]{Corresponding author: Nico Katzke\footnote{\textbf{Contributions:}
-  \newline \emph{The authors would like to thank no institution for
-  money donated to this project. Thank you sincerely.}}}
+
+\address[Add1]{Stellenbosch University, Stellenbosch, South Africa}
+
 
 \begin{abstract}
 \small{
-Abstract to be written here. The abstract should not be too long and
-should provide the reader with a good understanding what you are writing
-about. Academic papers are not like novels where you keep the reader in
-suspense. To be effective in getting others to read your paper, be as
-open and concise about your findings here as possible. Ideally, upon
-reading your abstract, the reader should feel he / she must read your
-paper in entirety.
+In order to convinve my friend not to move to the UK, I did some data
+analysis on London's weather patterns. Since she is not a big reader, I
+will keep my discussion to a minimum.
 }
 \end{abstract}
 
 \vspace{1cm}
 
 
-\begin{keyword}
-\footnotesize{
-Multivariate GARCH \sep Kalman Filter \sep Copula \\
-\vspace{0.3cm}
-}
-\footnotesize{
-\textit{JEL classification} L250 \sep L100
-}
-\end{keyword}
 
 
 
@@ -250,8 +227,35 @@ Multivariate GARCH \sep Kalman Filter \sep Copula \\
 
 
 
+\hypertarget{temperature-and-precipation}{%
+\section{Temperature and
+Precipation}\label{temperature-and-precipation}}
+
+The graph below shows a breakdown of temperature and rain in London
+throughout the year.
+
 \includegraphics{Question2_files/figure-latex/unnamed-chunk-2-1.pdf}
+
+It's clear that London is a very cold and wet place with the maximum
+average temperature being 23.7 and having dearly 2 inches (50mm) of rain
+all year round.
+
+\hypertarget{sunshine-or-rather-the-lack-thereof}{%
+\section{Sunshine, or rather the lack
+thereof}\label{sunshine-or-rather-the-lack-thereof}}
+
+The plot below shows the average cloud coverage in London by month.
+
 \includegraphics{Question2_files/figure-latex/unnamed-chunk-3-1.pdf}
+
+Sunny days are few in London, as most days are partly cloudy or
+overcast, as can be seen in the graph above.
+
+\hypertarget{london-vs-cape-town}{%
+\section{London vs Cape Town}\label{london-vs-cape-town}}
+
+Using data from the Southern Africa Tourism Services Association we can
+compare London and Cape Town.
 
 \begin{table}[ht]
 \centering
@@ -277,6 +281,10 @@ Multivariate GARCH \sep Kalman Filter \sep Copula \\
 \end{table}
 
 \includegraphics{Question2_files/figure-latex/unnamed-chunk-5-1.pdf}
+
+It is clear from the table and the graph that London experiences vastly
+more rain than Cape Town. London in its driest month gets more rain than
+Cape Town in its wettest month.
 
 \bibliography{Tex/ref}
 

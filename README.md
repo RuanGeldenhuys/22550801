@@ -1,48 +1,69 @@
 
-# Purpose
+# Data Science 871 Exam - Ruan Geldenhuys
 
-Purpose of this work folder.
+## Purpose
 
-Ideally store a minimum working example data set in data folder.
+The purpose of this repository is to host my Data Science practical
+exam, taken on 16/06/2023. This README contains only output and
+interpretation. Full code can be found under the code folder under the
+respective question’s folder.
 
-Add binary files in bin, and closed R functions in code. Human Readable
-settings files (e.g. csv) should be placed in settings/
+## Question 1 - Covid-19
 
-``` r
-rm(list = ls()) # Clean your environment:
-gc() # garbage collection - It can be useful to call gc after a large object has been removed, as this may prompt R to return memory to the operating system.
-```
-
-    ##          used (Mb) gc trigger (Mb) max used (Mb)
-    ## Ncells 454964 24.3     977775 52.3   644242 34.5
-    ## Vcells 812372  6.2    8388608 64.0  1635706 12.5
+### Covid deaths by Continent
 
 ``` r
-library(tidyverse)
+plotCovidArea(CovidDF)
 ```
 
-    ## Warning: package 'tidyverse' was built under R version 4.2.3
+![](README_files/figure-gfm/unnamed-chunk-3-1.png)<!-- -->
 
-    ## Warning: package 'ggplot2' was built under R version 4.2.3
-
-    ## Warning: package 'tibble' was built under R version 4.2.3
-
-    ## ── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
-    ## ✔ dplyr     1.1.0     ✔ readr     2.1.4
-    ## ✔ forcats   1.0.0     ✔ stringr   1.5.0
-    ## ✔ ggplot2   3.4.2     ✔ tibble    3.2.1
-    ## ✔ lubridate 1.9.2     ✔ tidyr     1.3.0
-    ## ✔ purrr     1.0.1     
-    ## ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
-    ## ✖ dplyr::filter() masks stats::filter()
-    ## ✖ dplyr::lag()    masks stats::lag()
-    ## ℹ Use the ]8;;http://conflicted.r-lib.org/conflicted package]8;; to force all conflicts to become errors
+The graph above breaks down Covid-19 deaths over time by continent.
+Europe had the most deaths and Oceania the least (as can be seen from
+the fact that they are barely visible on the graph). Africa had the
+second lowest amount of deaths.
 
 ``` r
-library(Texevier)
-list.files('code/', full.names = T, recursive = T) %>% .[grepl('.R', .)] %>% as.list() %>% walk(~source(.))
+plotCovidLollipop(CovidDF)
 ```
 
-# `{r} # Texevier::create_template("C:/Users/ruanm/OneDrive/Desktop/Masters/Data Science/22550801", template_name = 'Question1') # Texevier::create_template("C:/Users/ruanm/OneDrive/Desktop/Masters/Data Science/22550801", template_name = 'Question2') # Texevier::create_template("C:/Users/ruanm/OneDrive/Desktop/Masters/Data Science/22550801", template_name = 'Question3') # Texevier::create_template("C:/Users/ruanm/OneDrive/Desktop/Masters/Data Science/22550801", template_name = 'Question4') # Texevier::create_template("C:/Users/ruanm/OneDrive/Desktop/Masters/Data Science/22550801", template_name = 'Question5') #`
+![](README_files/figure-gfm/unnamed-chunk-4-1.png)<!-- -->
+
+The lollipop chart above once again shows the total deaths broken down
+by continent. The size of each point is representative of the continent
+population size. We see that population size is not indicative of Covid
+deaths. Africa has a larger population size than South and North
+America, yet has far fewer Covid deaths.
+
+### Demographic factors and Covid
+
+``` r
+demographyPlot(CovidDF, 2, 2)
+```
+
+![](README_files/figure-gfm/unnamed-chunk-5-1.png)<!-- -->
+
+The plots above show the relationship between various demographic
+factors and total Covid deaths. Elderly population and Smokers both have
+a positive relationship with Covid deaths as expected. What is
+surprising is that life expectancy is also positively correlated with
+Covid deaths. One potential explanation here could be that higher life
+expectancy is poisitve correlated with having more elderly people in the
+population and therefore these countries experiences more deaths.
+Lastly, the HDI relationship seems erroneous. What is likely happening
+here is that Europe’s high death toll is biasing results.
+
+### Hospitilastion and ICU
+
+``` r
+plotICUvHOSP(CovidDF)
+```
+
+![](README_files/figure-gfm/unnamed-chunk-6-1.png)<!-- -->
+
+The graph shows that for all continents, shortly after hospitalization
+started to increase, so would ICU patients. This effect is likely due to
+individuals first being hospitalized and shortly after their situation
+would deteriorate and they would be transferred to ICU.
 
 ![](RatingByGenre.gif)

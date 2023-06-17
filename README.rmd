@@ -1,31 +1,76 @@
 ---
 output: github_document
 ---
+# Data Science 871 Exam - Ruan Geldenhuys
 
-# Purpose
+## Purpose
 
-Purpose of this work folder.
-
-Ideally store a minimum working example data set in data folder.
-
-Add binary files in bin, and closed R functions in code. Human Readable settings files (e.g. csv) should be placed in settings/
+The purpose of this repository is to host my Data Science practical exam, taken on 16/06/2023. This README contains only output and interpretation. Full code can be found under the code folder under the respective question's folder.
 
 
-```{r}
+```{r include=FALSE}
 
 rm(list = ls()) # Clean your environment:
 gc() # garbage collection - It can be useful to call gc after a large object has been removed, as this may prompt R to return memory to the operating system.
 library(tidyverse)
 library(Texevier)
-list.files('code/', full.names = T, recursive = T) %>% .[grepl('.R', .)] %>% as.list() %>% walk(~source(.))
+library(ggpubr)
+library(hrbrthemes)
+library(viridis)
+
+#list.files('code/', full.names = T, recursive = T) %>% .[grepl('.R', .)] %>% as.list() %>% walk(~source(.))
 ```
 
-# ```{r}
-# Texevier::create_template("C:/Users/ruanm/OneDrive/Desktop/Masters/Data Science/22550801", template_name = 'Question1')
-# Texevier::create_template("C:/Users/ruanm/OneDrive/Desktop/Masters/Data Science/22550801", template_name = 'Question2')
-# Texevier::create_template("C:/Users/ruanm/OneDrive/Desktop/Masters/Data Science/22550801", template_name = 'Question3')
-# Texevier::create_template("C:/Users/ruanm/OneDrive/Desktop/Masters/Data Science/22550801", template_name = 'Question4')
-# Texevier::create_template("C:/Users/ruanm/OneDrive/Desktop/Masters/Data Science/22550801", template_name = 'Question5')
-# ```
+## Question 1 - Covid-19
+
+```{r include=FALSE}
+DeathCauseDF <- read.csv('data/Covid/Deaths_by_cause.csv')
+CovidDF <- read.csv('data/Covid/owid-covid-data.csv')
+source('Question1/code/CovidDeathfunctions.R')
+source('Question1/code/demographyPlot.R')
+source('Question1/code/plotICUvHOSP.R')
+```
+
+### Covid deaths by Continent
+
+```{r warning=FALSE}
+plotCovidArea(CovidDF)
+```
+
+The graph above breaks down Covid-19 deaths over time by continent. Europe had the most deaths and Oceania the least (as can be seen from the fact that they are barely visible on the graph). Africa had the second lowest amount of deaths.
+
+```{r}
+plotCovidLollipop(CovidDF)
+```
+
+The lollipop chart above once again shows the total deaths broken down by continent. The size of each point is representative of the continent population size. We see that population size is not indicative of Covid deaths. Africa has a larger population size than South and North America, yet has far fewer Covid deaths.
+
+### Demographic factors and Covid
+
+```{r fig.width=7}
+demographyPlot(CovidDF, 2, 2)
+```
+
+The plots above show the relationship between various demographic factors and total Covid deaths. Elderly population and Smokers both have a positive relationship with Covid deaths as expected. What is surprising is that life expectancy is also positively correlated with Covid deaths. One potential explanation here could be that higher life expectancy is poisitve correlated with having more elderly people in the population and therefore these countries experiences more deaths. Lastly, the HDI relationship seems erroneous. What is likely happening here is that Europe's high death toll is biasing results.
+
+### Hospitilastion and ICU
+
+```{r fig.width=7, fig.height=7}
+plotICUvHOSP(CovidDF)
+```
+
+The graph shows that for all continents, shortly after hospitalization started to increase, so would ICU patients. This effect is likely due to individuals first being hospitalized and shortly after their situation would deteriorate and they would be transferred to ICU.
+
+
+
+
+
+
+
+
+
+
+
+
 
 ![](RatingByGenre.gif)

@@ -1,5 +1,5 @@
 ---
-title: "Helping You Write Academic Papers in R using Texevier"
+title: "How to save Netflix: A Data-driven approach"
 documentclass: elsarticle
 Thesis_FP: no
 output:
@@ -10,20 +10,9 @@ output:
     template: Tex/TexDefault.txt
     fig_width: 3.5
     fig_height: 3.5
-Author1: Nico Katzke^[__Contributions:__  \newline _The authors would like to thank
-  no institution for money donated to this project. Thank you sincerely._]
-Ref1: Prescient Securities, Cape Town, South Africa
-Email1: nfkatzke\@gmail.com
-Author2: John Smith
-Ref2: Some other Institution, Cape Town, South Africa
-Email2: John\@gmail.com
-CommonAffiliation_12: yes
-Author3: John Doe
-Email3: Joe\@gmail.com
-CorrespAuthor_1: yes
-keywords: Multivariate GARCH \sep Kalman Filter \sep Copula
-JELCodes: L250 \sep L100
-BottomRFooter: \footnotesize Page \thepage
+Author1: Ruan Geldenhuys
+Ref1: Stellenbosch University, Stellenbosch, South Africa
+Email1: 22550801@sun.ac.za
 addtoprule: yes
 addfootrule: yes
 margin: 2.3
@@ -34,7 +23,6 @@ linenumbers: no
 bibliography: Tex/ref.bib
 csl: "Tex/harvard-stellenbosch-university.csl"
 RemovePreprintSubmittedTo: yes
-Journal: Journal of Finance
 toc: no
 numbersections: yes
 fontsize: 11pt
@@ -42,30 +30,22 @@ linestretch: 1.2
 link-citations: yes
 AddTitle: yes
 abstract: |
-  Abstract to be written here. The abstract should not be too long and should provide the reader with a good understanding what you are writing about. Academic papers are not like novels where you keep the reader in suspense. To be effective in getting others to read your paper, be as open and concise about your findings here as possible. Ideally, upon reading your abstract, the reader should feel he / she must read your paper in entirety.
+    This document investigates Movie and TV Show data provided by Netflix in order to visualise what factors lead to content on Netflix being popular and highly rated. This information can then be used as a jumping off point to improve the content delivery Netflix provides and alleviate some of the rough times the company is facing.
+    [Note: Keep this document as .html, TeX does not play well with GIF's]
 ---
 
-<!-- First: Set your default preferences for chunk options: -->
 
-<!-- If you want a chunk's code to be printed, set echo = TRUE. message = FALSE stops R printing ugly package loading details in your final paper too. I also suggest setting warning = FALSE and checking for warnings in R, else you might find ugly warnings in your paper. -->
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = FALSE, message = FALSE, warning = FALSE, fig.width = 6, fig.height = 5, fig.pos="H", fig.pos = 'H')
-# Note: Include = FALSE implies the code is executed, but not printed in your pdf.
-# warning and message = FALSE implies ugly messages and warnings are removed from your pdf.
-# These should be picked up when you execute the command chunks (code sections below) in your rmd, not printed in your paper!
-
-# Lets load in example data, and see how this can be stored and later called from your 'data' folder.
 if(!require("tidyverse")) install.packages("tidyverse")
 library(tidyverse)
 library(gganimate)
 library(gifski)
 library(xtable)
-# Notice that as you are working in a .Rproj file (I am assuming you are) - the relative paths of your directories start at your specified root.
-# This means that when working in a .Rproj file, you never need to use getwd() - it is assumed as your base root automatically.
-
 
 ```
+
 ```{r}
 TitlesDF <- read.csv('data/netflix/titles.csv')
 source('code/makeGenreGif.R')
@@ -74,7 +54,9 @@ source('code/plotRunPop.R')
 source('code/tableRatings.R')
 ```
 
+## Genre's and Ratings
 
+The GIF below shows popular genres for Movies and TV shows and the corresponding IMDB score by year.
 ```{r}
 gif <- makeGenreGif(TitlesDF)
 gif_anim <- animate(gif, fps=10, duration=20, renderer = gifski_renderer(), height = 700, width = 700)
@@ -83,13 +65,27 @@ anim_save("RatingByGenre.gif", gif_anim)
 
 ![](RatingByGenre.gif)
 
+Better movies and shows drive viewership. However, these ratings are not dependent on genre. As can be seen from the GIF above, average IMDB scores by category changes drastically from year to year. No one category remains dominant or worse off for extended periods of time. What we can draw from this is that the focus should not be on producing shows of solely a particular genre, since a certain genre does not guarantee better ratings.
+
+## TV Shows vs Movies
+
+The plot below shows the average popularity of TV Shows and Movies across different release dates.
 ```{r}
 plotPopularity(TitlesDF)
 ```
 
+What is clear from the graph above is that for almost all media produced after the early 1980's, TV Shows have consistently outperformed Movies. Thus if Netflix is looking to expand its collection, this data shows that they should look to TV Shows first.
+
+When deciding what shows to add we can again turn to the data to answer. 
+
 ```{r}
 plotRunPop(TitlesDF)
 ```
+
+Since we have established that simply looking at genre is not sufficient, another metric is needed. The graph above shows how popular TV shows and Movies are when compared with their runtime. For TV shows we see it is optimal for an episode to be either around 25 minutes or just below 50 minutes. Movies are most popular just under the 2 hour mark. Any longer, for either type drastically reduced popularity.
+
+
+## Age Certification and popularity 
 
 ```{r, results='asis'}
 ratingsTable <- options(xtable.comment = FALSE)
@@ -97,3 +93,6 @@ ratingsTable <- tableRatings(TitlesDF)
 ratingsTable
 ```
 
+By looking at the Age Rating of content on Netflix and their corresponding popularity, we can gain insights into what type of content the users are looking for. From the table above we see that TV-G shows are the most popular demographic, while TV-Y is the least popular. This could indicate that Netflix should invest more in general inoffensive content than content catered to children and toddlers. 
+
+-Ruan Geldenhuys
