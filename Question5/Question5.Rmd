@@ -11,18 +11,8 @@ output:
     fig_width: 3.5
     fig_height: 3.5
 Author1: Ruan Geldenhuys
-Ref1: Prescient Securities, Cape Town, South Africa
+Ref1: Stellenbosch University, Stellenbosch, South Africa
 Email1: 22550801@sun.ac.za
-Author2: John Smith
-Ref2: Some other Institution, Cape Town, South Africa
-Email2: John\@gmail.com
-CommonAffiliation_12: yes
-Author3: John Doe
-Email3: Joe\@gmail.com
-CorrespAuthor_1: yes
-keywords: Multivariate GARCH \sep Kalman Filter \sep Copula
-JELCodes: L250 \sep L100
-BottomRFooter: \footnotesize Page \thepage
 addtoprule: yes
 addfootrule: yes
 margin: 2.3
@@ -33,7 +23,6 @@ linenumbers: no
 bibliography: Tex/ref.bib
 csl: "Tex/harvard-stellenbosch-university.csl"
 RemovePreprintSubmittedTo: yes
-Journal: Journal of Finance
 toc: no
 numbersections: yes
 fontsize: 11pt
@@ -41,27 +30,17 @@ linestretch: 1.2
 link-citations: yes
 AddTitle: yes
 abstract: |
-  Abstract to be written here. The abstract should not be too long and should provide the reader with a good understanding what you are writing about. Academic papers are not like novels where you keep the reader in suspense. To be effective in getting others to read your paper, be as open and concise about your findings here as possible. Ideally, upon reading your abstract, the reader should feel he / she must read your paper in entirety.
+    This document investigates what makes applications on the Google Play Store successful by using publicaly available data regarding app information. By comparing app level characteristics, it is possible to gain insight into why some apps outperform others.
+  
 ---
-
-<!-- First: Set your default preferences for chunk options: -->
-
-<!-- If you want a chunk's code to be printed, set echo = TRUE. message = FALSE stops R printing ugly package loading details in your final paper too. I also suggest setting warning = FALSE and checking for warnings in R, else you might find ugly warnings in your paper. -->
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = FALSE, message = FALSE, warning = FALSE, fig.width = 6, fig.height = 5, fig.pos="H", fig.pos = 'H')
-# Note: Include = FALSE implies the code is executed, but not printed in your pdf.
-# warning and message = FALSE implies ugly messages and warnings are removed from your pdf.
-# These should be picked up when you execute the command chunks (code sections below) in your rmd, not printed in your paper!
 
-# Lets load in example data, and see how this can be stored and later called from your 'data' folder.
 if(!require("tidyverse")) install.packages("tidyverse")
 library(tidyverse)
 library(stringr)
 library(xtable)
-
-# Notice that as you are working in a .Rproj file (I am assuming you are) - the relative paths of your directories start at your specified root.
-# This means that when working in a .Rproj file, you never need to use getwd() - it is assumed as your base root automatically.
 
 ```
 
@@ -73,6 +52,11 @@ source('code/downloadsTable.R')
 source('code/DownloadsSizesPlot.R')
 ```
 
+ 
+## Price Range and Downloads
+
+Below is a table that displays different price ranges for apps, together with the median and average downloads for that price range. The table is sorted by average downloads.
+
 ```{r, results='asis'}
 options(scipen = 999)
 outputtable <- options(xtable.comment = FALSE)
@@ -80,8 +64,19 @@ outputtable <- downloadsTable(appsDF)
 outputtable
 ```
 
+It is clear from the table that cheaper apps garner more downloads. While this correlation is not perfect it does roughly hold across the different price ranges. This effect is to expected in any product, not just apps. When building an app it is important to consider the trade-off between the upfront revenue versus ad-revenue. This data shows that it is a possibility that ad-revenue could outperform upfront revenue since the difference in downloads between price ranges is so large.
 
-```{r fig.height=5}
+Note however, these average could be blown out of proportion due to hyper-successful outliers. The counter argument to that however, is the fact that for every successful app, there is likely to be an app that gets almost no downloads.
+
+## Categories of Apps
+
+The graph below shows the top ten categories of apps on the Google Play Store. The bars indicate average downloads, while the line represents the average size of the apps in the category.
+```{r fig.width=8, fig.height=6}
 DownloadsSizesPlot(appsDF)
 ```
 
+Gaming apps are by far the most popular app on the Google Play Store, followed by Entertainment and Communication. When comparing the relative popularity of apps to their sizes, one might be tempted to infer that larger apps perform better. However, this relationship only holds for the top three categories, and is therefore likely not causal. Most apps, apart from gaming, fall around the 20 MB range. Thus, when developing an app we should aim for this size, as much larger might deter users since modern phones don't accommodate external storage.
+
+Furthermore, one should be wary of simply building a mobile app because gaming is the most popular category, since this market is likely to be saturated. Instead more market research is needed before committing to a single category of app.
+
+-Ruan Geldenhuys
