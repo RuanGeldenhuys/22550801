@@ -53,8 +53,8 @@ factors and total Covid deaths. Elderly population and Smokers both have
 a positive relationship with Covid deaths as expected. What is
 surprising is that life expectancy is also positively correlated with
 Covid deaths. One potential explanation here could be that higher life
-expectancy is poisitve correlated with having more elderly people in the
-population and therefore these countries experiences more deaths.
+expectancy is positively correlated with having more elderly people in
+the population and therefore these countries experience more deaths.
 Lastly, the HDI relationship seems erroneous. What is likely happening
 here is that Europe’s high death toll is biasing results.
 
@@ -367,7 +367,7 @@ apart from gaming, fall around the 20 MB range. Thus, when developing an
 app we should aim for this size, as much larger might deter users since
 modern phones don’t accommodate external storage.
 
-Furthermore, one should be wary of simply building a mobile app because
+Furthermore, one should be wary of simply building a mobile game because
 gaming is the most popular category, since this market is likely to be
-saturated. Instead more market research is needed before committing to a
-single category of app.
+saturated. Instead, more market research is needed before committing to
+a single category of app.
