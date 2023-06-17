@@ -58,8 +58,7 @@ Below is a table that displays different price ranges for apps, together with th
 
 ```{r, results='asis'}
 options(scipen = 999)
-outputtable <- options(xtable.comment = FALSE)
-outputtable <- downloadsTable(appsDF)
+outputtable <- downloadsTable(appsDF, Latex = FALSE)
 outputtable
 ```
 

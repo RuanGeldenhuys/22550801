@@ -1,4 +1,4 @@
-downloadsTable <- function(appsDF){
+downloadsTable <- function(appsDF, Latex = FALSE){
     df <- appsDF %>%
         mutate(Price = as.numeric(str_remove(Price, "\\$"))) %>%
         mutate(Installs = str_remove(Installs, "\\+")) %>%
@@ -25,6 +25,12 @@ downloadsTable <- function(appsDF){
         arrange(desc(avgDownloads))
     colnames(PriceDownloads) <- c('Price Range','Median Downloads', 'Average Downloads')
 
-    finaltable <- xtable(PriceDownloads, caption = 'Price vs Downloads')
+    if (Latex) {
+        finaltable <- options(xtable.comment = FALSE)
+        finaltable <- xtable(PriceDownloads, caption = 'Price vs Downloads')
+    } else{
+        finaltable <- knitr::kable(PriceDownloads, caption = 'Price vs Downloads')
+    }
+
     return(finaltable)
 }

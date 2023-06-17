@@ -84,7 +84,7 @@ output:
     fig_width: 3.5 # Adjust default figure sizes. This can also be done in the chunks of the text.
     fig_height: 3.5
 abstract: |
- In order to convinve my friend not to move to the UK, I did some data analysis on London's weather patterns. Since she is not a big reader, I will keep my discussion to a minimum.
+ In order to convince my friend not to move to the UK, I did some data analysis on London's weather patterns. Since she is not a big reader, I will keep my discussion to a minimum.
 ---
 
 <!-- First: Set your default preferences for chunk options: -->
